@@ -1,0 +1,61 @@
+﻿<Window x:Class="PropertyChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:PropertyChecker"
+        mc:Ignorable="d"
+        Title="Property Checker!" Height="700" Width="1000" Background="Black">
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  Content="Property Checker" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Name="OpenFolderDialog" VerticalAlignment="Stretch" BorderBrush="{x:Null}" Content="{Binding OpenFolderDialogContent.Value, Mode=OneWay}" Command="{Binding OpenFolderDialogCommand}" />
+        <Label Grid.Column="0" Grid.Row="2" Name="LabelFolderName" VerticalAlignment="Center" Content="{Binding LabelFolderName.Value}" />
+        <TextBox Grid.Column="1" Grid.Row="2" Name="TargetFolder" Background="Black" Foreground="Green"  VerticalAlignment="Stretch" VerticalContentAlignment="Center" BorderBrush="{x:Null}" Text="{Binding TargetFolderContent.Value, Mode=TwoWay}"  IsReadOnly="{Binding TargetFolderContentReadOnly.Value}"/>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Name="CheckProperty"  Background="Black" Foreground="Green"  VerticalAlignment="Stretch" BorderBrush="{x:Null}" Content="{Binding CheckPropertyContent.Value, Mode=OneWay}" Command="{Binding CheckPropertyCommand}" />
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Name="Clear"  Background="Black" Foreground="Green"  VerticalAlignment="Stretch" BorderBrush="{x:Null}" Content="{Binding ClearContent.Value, Mode=OneWay}" Command="{Binding ClearCommand}" />
+        <Label Grid.Column="0" Grid.Row="5" Name="DateTimeLabel" Background="Black" Foreground="Green"  VerticalAlignment="Center" Content="{Binding LabelDateTimeContent.Value}" />
+        <!--<xctk:DateTimePicker  Grid.Column="1" Grid.Row="5" AllowTextInput="True" Background="Black" Foreground="Green"  VerticalAlignment="Stretch" BorderBrush="{x:Null}" Value="{Binding NowDateTimeValue.Value, Mode=TwoWay}" />-->
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Name="DeleteProperty" Background="Black" Foreground="Green"  VerticalAlignment="Stretch" BorderBrush="{x:Null}" Content="{Binding DeletePropertyContent.Value}" Command="{Binding DeletePropertyCommand}" />
+        <DataGrid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" Name="ResultsDataGrid" Foreground="Black" AutoGenerateColumns="False" RowBackground="Black" HeadersVisibility="Column" VerticalGridLinesBrush="White" HorizontalGridLinesBrush="White" VerticalAlignment="Stretch" Background="Black"    SelectionUnit="FullRow" ItemsSource="{Binding Results.Value}" SelectedItem="{Binding Path=SelectedItemValue}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Foreground" Value="Green"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Path" Binding="{Binding RelativePath}"/>
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="FileName" Binding="{Binding FileName}"/>
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Creation​Time" Binding="{Binding CreationTimeString}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Last​Access​Time" Binding="{Binding LastAccessTimeString}"/>
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Last​Write​Time" Binding="{Binding LastWriteTimeString}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Subject" Binding="{Binding Subject}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Author" Binding="{Binding Author}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Keywords" Binding="{Binding Keywords}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="LastAuthor" Binding="{Binding LastAuthor}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="LastPrintDate" Binding="{Binding LastPrintDate}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="CreationDate" Binding="{Binding CreationDate}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Category" Binding="{Binding Category}" />
+                <DataGridTextColumn  CanUserReorder="True" CanUserResize="True"  CanUserSort="False" Foreground="Green" Width="auto" Header="Company" Binding="{Binding Company}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
